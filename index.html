@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>hello-wasm example</title>
+    </head>
+    <body>
+        <textarea id="input_code" rows="40" cols = "80">
+            Code to be preprocessed
+        </textarea>
+        <textarea id="output_code" rows="40" cols = "80">
+            Code appers here
+        </textarea>
+        <button id="convert_code">
+            Click to convert code
+        </button>
+        <script type="module">
+            import init, {greet, preprocess} from "./pkg/wasm_test.js";
+            init()
+                .then(() => {
+                    var button = document.getElementById("convert_code");
+                    button.onclick = () => {
+                        var output_code = preprocess(document.getElementById("input_code").value);
+                        document.getElementById("output_code").value = output_code;
+                };
+        });
+        </script>
+    </body>
+</html>
+
